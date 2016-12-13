@@ -1,0 +1,46 @@
+user: 1
+comp: 4
+
+|-> (racing car)
+# Lane X # (finish line)
+~ (moved)
+space (not moved)
+~ + space = 40 (distance)
+
+
+game starts with: ENTER
+1 car: 1 thread   forks????
+check if you’re pid
+#include <pthread.h>
+void* foo(void *args) {
+pthread thread;
+int pthread_create(pthread_t *thread, NULL, void*(*thread_function) (void *), void *arg);
+}
+void phtread_exit(void *value_ptr);
+value_ptr = NULL
+main:
+int pthread_join(putrid_t thread, void **value_ptr)
+value_ptr = NULL
+
+CAR 1: 
+read input
+1 space >: ENTER
+CAR 2 3 4 5:
+stdio.h
+unistd.h
+rand() 
+unsleep()
+cars sleep random 0-100 milliseconds every ENTER
+sleeps longer: moves slower
+calculate new position
+don’t output position
+DRAW:
+another thread
+5 fps
+clear screen
+system()
+#include <stdlib.h>
+system(“cls”);
+main() or return 0 or something
+draw new positions
+sleep for 20 milliseconds
