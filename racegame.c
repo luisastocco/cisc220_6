@@ -1,5 +1,5 @@
 #include <pthread.h>
-#include "carrace.h"
+#include "racegame.h"
 #include <stdlib.h>
 #include <stdio.h>
 #include <unistd.h>
@@ -24,7 +24,8 @@ char* othercars() {
 while (1) {
 	char c = getchar();
 	if (c == '\n' && PREV == c) {
-		sleep(rand(0.1)); //0-100 milliseconds
+		unsigned float compsleep = rand(0.1); //0-100 milliseconds
+		sleep(compsleep);
 	}
 	PREV = c;
 }
@@ -41,12 +42,32 @@ int pthread_create(pthreat_t *thread, NULL, void* (*thred_function) (void *), vo
 value_ptr = NULL
 
 void main() {
-int pthread_join(pthread_t thread, void NULL);
+	printf("Welcome to Cisc220 Racind Arena\n");
+	printf("Hit enter to move forward\n");
+//int pthread_join(pthread_t thread, void NULL);
 
 }
 
+#define DONE "~";
+#define LEFT " ";
+#define CAR "|=>";
+//int lane somwhere?
 
 char* draw() {
+
+	int position = 0;
+	if (position == player) {
+		printf("%s", "|=>");
+	} else {
+		position++;
+	}
+	for (int i=0; i<player; i++) {
+		printf("%s", "~");
+	}
+	for (int i=0; i>player; i++) {
+		printf("%s", " ");
+	} prinf("# LANE %d #\n", lane);
+
 system("cis"); //to clear
 //return 0 or main()?
 sleep(0.2); //sleep is in seconds, 0.2 is 20 milliseconds
