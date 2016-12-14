@@ -89,9 +89,13 @@ int main() {
 	car[3] = 0;
 	car[4] = 0;
 	
-	phtread_create(user, NULL, *computer, &car[0]);
 	int rc;
     	long t;
+	rc =phtread_create(user, NULL, *computer, &car[0]);
+	if(rc) {
+         printf("ERROR; return code from pthread_create() is %d\n", rc);
+         exit(-1);
+       	}
    	for (t=0; t<4; t++) {
        rc = pthread_create(computer+t, NULL, &computer ,&car[t+1]);
        if(rc) {
@@ -99,7 +103,7 @@ int main() {
          exit(-1);
        	}
    	}
-	pthread_create(&drawing, NULL, screen, &car);
+	rc = pthread_create(&drawing, NULL, screen, &car);
 	if(rc) {
          printf("ERROR; return code from pthread_create() is %d\n", rc);
          exit(-1);
