@@ -7,33 +7,30 @@
 #include <stdio.h>
 #include <unistd.h>
 
-pthread_t user;
-pthread_t computer[4];
-
-//make array of 4 cars
+//make array of 5 cars
 int cars[5]; //global
 #define CARS 5;
 
-//do a draw for car1
+//do a draw for car1 maybe?
 
-void* draw() { //get lane & position
-	int CAR[i] = 0;
+void* draw() {
+	int car[i] = 0;
 	for(int i=0; i<40; i++) {
-	if (i == CAR[i]) {
+	if (i == car[i]) {
 		printf("%s", "|=>"); //print car at player's position
 	} else {
-		CAR[i]++;
+		car[i]++;
 	}
 	}
-	for (int i=0; i<CAR[i]; i++) {
+	for (int i=0; i<car[i]; i++) {
 		printf("%s", "~"); //print ~ where the player has already been
 	}
-	for (int i=0; i>CAR[i]; i<40; i++) {
+	for (int i=0; i>car[i]; i<40; i++) {
 		printf("%s", " "); //print space where the player needs to go
 	} 
-	for (int i=0; i>CAR[i]; i<41; i++) {
+	for (int i=0; i>car[i]; i<41; i++) {
 	if (i==40) {
-		printf("# LANE %d #\n", lane); //print lane at the end
+		printf("# LANE %d #\n", i); //print lane at the end
 	}
 	}
 }
@@ -41,34 +38,34 @@ void* draw() { //get lane & position
 //int pthread_create(pthread_t *user, NULL, draw();
 //cars return strings? added together in draw?
 
-void* user(void* CAR) {
+void* user() {
 prev = 0;
 //code for input from stackoverflow "Reading enter key in a loop in C"
-while (1 && CAR[0]<40) {
+while (1 && car[0]<40) {
 	char c = getchar();
 	if (c == '\n' && prev == c) { //is it c or 0?
-		CAR[0]++;
+		car[0]++;
 		computer(); //call other cars
 	}
 	prev = c;
 }
 }
 
-void* computer(void* CAR) {
+void* computer() {
 for (i=1; i<4; i++) {
-	while (1 && CAR[i]<40) {
+	while (1 && car[i]<40) {
 		usleep(rand(0.1)); //0-100 milliseconds
-		CAR[i]++;
+		car[i]++;
 	}
 }
 }
 
-void game(void* CAR) {
+void game(void* car) {
 	int win;
 	int lose;
 	while (1 && !lose) {
 		for (int i=0; i < CARS; i++) {
-			if (CAR[i] >= 40) {
+			if (car[i] >= 40) {
 				lose = 1;
 				win = i+1;
 				break;
@@ -76,7 +73,7 @@ void game(void* CAR) {
 		system("cis"); //to clear //from stackoverflow
 		usleep(0.2); //20 milliseconds
 		for (int i=0; i<CARS; i++) {
-			draw(CAR[i], i+1);
+			draw(car[i], i+1);
 		}
 		if (lose) {
 			printf("Car %d is the winner!\n", win);
