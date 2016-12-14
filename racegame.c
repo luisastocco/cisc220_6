@@ -11,11 +11,7 @@ pthread_t user;
 pthread_t computer[4];
 
 //make array of 4 cars
-#define CAR[0] 0;
-#define CAR[1] 0;
-#define CAR[2] 0;
-#define CAR[3] 0;
-#define CAR[4] 0;
+int cars[5]; //global
 #define CARS 5;
 
 //do a draw for car1
