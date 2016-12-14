@@ -25,6 +25,7 @@ while (1) {
 		draw(i);
 	}
 	usleep(0.2); //20 milliseconds
+}
 	return 0;
 }
 //somewhere: void pthread_exit(void *value_ptr);
