@@ -8,26 +8,47 @@
 
 //make array of 5 cars
 int cars[5]; //global
-#define CARS 5;
+#define CARS 5; //number of cars/lanes/players
 
-//do a draw for car1 maybe?
+//do a draw for car1 maybe? or should we stick to array of 5 all together?
 
-void* draw() {
-	int car[i] = 0;
+int screen() {
+	int win;
+	while (1) {
+		for (int i=0; i<5; i++) {
+			if (car[i] >= 40) {
+				lose = 1;
+				win = i+1;
+				break;
+			}
+		system("cis"); //to clear //from stackoverflow
+		for (int i=0; i<5; i++) {
+			draw(i);
+		}
+		usleep(0.2); //20 milliseconds
+		if (lose) {
+			printf("Car %d is the winner!\n", win);
+		}
+		return 0;
+}
+//somewhere: void pthread_exit(void *value_ptr);
+//value_ptr = NULL
+
+void* draw(int number) {
 	for(int i=0; i<40; i++) {
-	if (i == car[i]) {
+	if (i == car[number]) {
 		printf("%s", "|=>"); //print car at player's position
 	} else {
-		car[i]++;
+		car[number]++;
 	}
 	}
-	for (int i=0; i<car[i]; i++) {
+	for (int i=0; i<car[number]; i++) {
 		printf("%s", "~"); //print ~ where the player has already been
 	}
-	for (int i=0; i>car[i]; i<40; i++) {
+	for (int i=0; i>car[number]; i<40; i++) {
 		printf("%s", " "); //print space where the player needs to go
 	} 
-	for (int i=0; i>car[i]; i<41; i++) {
+	for (int i=0; i>car[number]; i<41; i++) {
 	if (i==40) {
 		printf("# LANE %d #\n", i); //print lane at the end
 	}
@@ -58,44 +79,18 @@ for (i=1; i<4; i++) {
 	}
 }
 }
-
-void game(void* car) {
-	int win;
-	int lose;
-	while (1 && !lose) {
-		for (int i=0; i < CARS; i++) {
-			if (car[i] >= 40) {
-				lose = 1;
-				win = i+1;
-				break;
-			}
-		system("cis"); //to clear //from stackoverflow
-		usleep(0.2); //20 milliseconds
-		for (int i=0; i<CARS; i++) {
-			draw(car[i], i+1);
-		}
-		if (lose) {
-			printf("Car %d is the winner!\n", win);
-		}
-		return 0;
-}
-//somewhere: void pthread_exit(void *value_ptr);
-//value_ptr = NULL
-int start(){
-    printf("Welcome to CISC220 Racing Arena\nHit Enter to move forward\n");
-return 0;
-}
+		
 int main() {
-	start();
+	printf("Welcome to CISC220 Racing Arena\nHit Enter to move forward\n");
 	pthread_t drawing;
 	pthread_t user;
 	pthread_t computer[4];
 
-	CAR[0] = 0;
-	CAR[1] = 0;
-	CAR[2] = 0;
-	CAR[3] = 0;
-	CAR[4] = 0;
+	car[0] = 0;
+	car[1] = 0;
+	car[2] = 0;
+	car[3] = 0;
+	car[4] = 0;
 	
 	phtread_create(user, NULL, computer, &CAR[0]);
 	int rc;
@@ -107,7 +102,7 @@ int main() {
          exit(-1);
        	}
    	}
-	pthread_create(drawing, NULL, game, CAR);
+	pthread_create(drawing, NULL, screen, CAR);
 	if(rc) {
          printf("ERROR; return code from pthread_create() is %d\n", rc);
          exit(-1);
