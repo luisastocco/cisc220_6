@@ -2,7 +2,6 @@
 //Luisa Aimoli 10169687
 
 #include <pthread.h>
-#include "racegame.h"
 #include <stdlib.h>
 #include <stdio.h>
 #include <unistd.h>
