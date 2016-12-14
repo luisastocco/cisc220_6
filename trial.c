@@ -7,13 +7,15 @@
 pthread_t user;
 pthread_t computer[4];
 
-#define CAR1 0;
 //make array of 4 cars
-#define CAR2 0;
-#define CAR3 0;
-#define CAR4 0;
-#define CAR5 0;
-#define CARNUMBER 5;
+#define CAR[0] 0;
+#define CAR[1] 0;
+#define CAR[2] 0;
+#define CAR[3] 0;
+#define CAR[4] 0;
+#define CARS 5;
+
+//do a draw for car1
 
 void* draw() { //get lane & position
 	int CAR[i] = 0;
@@ -41,7 +43,7 @@ void* draw() { //get lane & position
 
 //cars return strings? added together in draw?
 
-void* cars(void* CAR) {
+void* user(void* CAR) {
 prev = 0;
 //code for input from stackoverflow "Reading enter key in a loop in C"
 while (1 && CAR[0]<40) {
@@ -54,7 +56,7 @@ while (1 && CAR[0]<40) {
 }
 }
 
-void* computer(void CAR) {
+void* computer(void* CAR) {
 for (i=1; i<4; i++) {
 	while (1 && CAR[i]<40) {
 		sleep(rand(0.1)); //0-100 milliseconds
@@ -84,12 +86,30 @@ void game(void* CAR) {
 		return 0;
 }
 //somewhere: void pthread_exit(void *value_ptr);
-value_ptr = NULL
+//value_ptr = NULL
 
-void main() {
+int main() {
+	pthread_t drawing;
+	pthread_t user;
+	pthread_t computer[4];
+
+	CAR[0] = 0;
+	CAR[1] = 0;
+	CAR[2] = 0;
+	CAR[3] = 0;
+	CAR[4] = 0;
+	
 	printf("Welcome to Cisc220 Racing Arena\n");
 	printf("Hit enter to move forward\n");
+	phtread_create(user, NULL, computer, &CAR[0]);
+	pthread_create(computer[0], NULL, computer, &CAR[1]);
+	pthread_create(computer[1], NULL, computer, &CAR[2]);
+	pthread_create(computer[2], NULL, computer, &CAR[3]);
+	pthread_create(computer[3], NULL, computer, &CAR[4]);
+	pthread_create(drawing, NULL, game, CAR);
+	pthread_join(drawing, NULL);
+	
+	return 0;
 //int pthread_join(pthread_t thread, void NULL);
-
 }
 
