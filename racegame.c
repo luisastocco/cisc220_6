@@ -106,7 +106,7 @@ int main() {
        	}
 	pthread_join(drawing, NULL);
 	for(t=0; t<4; t++) {
-       	pthread_join(threads[t],NULL);
+       	pthread_join(computer[t],NULL);
     	}
 	
 	pthread_exit(NULL);
