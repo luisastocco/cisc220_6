@@ -8,6 +8,11 @@
 
 //make array of 5 cars
 int cars[5]; //global
+car[0] = 0;
+	car[1] = 0;
+	car[2] = 0;
+	car[3] = 0;
+	car[4] = 0;
 #define CARS 5; //number of cars/lanes/players
 
 //do a draw for car1 maybe? or should we stick to array of 5 all together?
@@ -82,12 +87,6 @@ int main() {
 	pthread_t drawing;
 	pthread_t user;
 	pthread_t computer[4];
-
-	car[0] = 0;
-	car[1] = 0;
-	car[2] = 0;
-	car[3] = 0;
-	car[4] = 0;
 	
 	int rc;
     	long t;
