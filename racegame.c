@@ -89,11 +89,11 @@ int main() {
 	car[3] = 0;
 	car[4] = 0;
 	
-	phtread_create(user, NULL, computer, &CAR[0]);
+	phtread_create(user, NULL, *computer, &car[0]);
 	int rc;
     	long t;
    	for (t=0; t<4; t++) {
-       rc = pthread_create(computer+t, NULL, computer ,&CAR[t+1]);
+       rc = pthread_create(computer+t, NULL, *computer ,&car[t+1]);
        if(rc) {
          printf("ERROR; return code from pthread_create() is %d\n", rc);
          exit(-1);
