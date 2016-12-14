@@ -13,23 +13,19 @@ int cars[5]; //global
 //do a draw for car1 maybe? or should we stick to array of 5 all together?
 
 int screen() {
-	int win;
-	while (1) {
-		for (int i=0; i<5; i++) {
-			if (car[i] >= 40) {
-				lose = 1;
-				win = i+1;
-				break;
-			}
-		system("cis"); //to clear //from stackoverflow
-		for (int i=0; i<5; i++) {
-			draw(i);
+while (1) {
+	for (int i=0; i<5; i++) {
+		if (car[i] >= 40) {
+			printf("Car %d is the winner!\n", i);
+			break;
 		}
-		usleep(0.2); //20 milliseconds
-		if (lose) {
-			printf("Car %d is the winner!\n", win);
-		}
-		return 0;
+	}
+	system("cis"); //to clear //from stackoverflow
+	for (int i=0; i<5; i++) {
+		draw(i);
+	}
+	usleep(0.2); //20 milliseconds
+	return 0;
 }
 //somewhere: void pthread_exit(void *value_ptr);
 //value_ptr = NULL
