@@ -1,74 +1,124 @@
+//Braedan Robinson 10188414
+//Luisa Aimoli 10169687
+
 #include <pthread.h>
-#include "racegame.h"
 #include <stdlib.h>
 #include <stdio.h>
 #include <unistd.h>
 
+//make array of 5 cars
+int cars[5]; //global
+#define CARS 5;
+
+//do a draw for car1 maybe?
+
+void* draw() {
+	int car[i] = 0;
+	for(int i=0; i<40; i++) {
+	if (i == car[i]) {
+		printf("%s", "|=>"); //print car at player's position
+	} else {
+		car[i]++;
+	}
+	}
+	for (int i=0; i<car[i]; i++) {
+		printf("%s", "~"); //print ~ where the player has already been
+	}
+	for (int i=0; i>car[i]; i<40; i++) {
+		printf("%s", " "); //print space where the player needs to go
+	} 
+	for (int i=0; i>car[i]; i<41; i++) {
+	if (i==40) {
+		printf("# LANE %d #\n", i); //print lane at the end
+	}
+	}
+}
+
+//int pthread_create(pthread_t *user, NULL, draw();
 //cars return strings? added together in draw?
 
-
-#define char PREV = 0;
-char* car1() {
+void* user() {
+prev = 0;
 //code for input from stackoverflow "Reading enter key in a loop in C"
-while (1) {
+while (1 && car[0]<40) {
 	char c = getchar();
-	if (c == '\n' && PREV == c) {
-		//move car one space
+	if (c == '\n' && prev == c) { //is it c or 0?
+		car[0]++;
+		computer(); //call other cars
 	}
-	//when someone wins:
-	PREV = c;
+	prev = c;
 }
 }
 
-char* othercars() {
-while (1) {
-	char c = getchar();
-	if (c == '\n' && PREV == c) {
-		unsigned float compsleep = rand(0.1); //0-100 milliseconds
-		sleep(compsleep);
+void* computer() {
+for (i=1; i<4; i++) {
+	while (1 && car[i]<40) {
+		usleep(rand(0.1)); //0-100 milliseconds
+		car[i]++;
 	}
-	PREV = c;
 }
-//if sleep > last = move slower
-//only return positions
 }
 
-void* foo(void *args) {
-pthread thread;
-int pthread_create(pthreat_t *thread, NULL, void* (*thred_function) (void *), void *arg);
+void game(void* car) {
+	int win;
+	int lose;
+	while (1 && !lose) {
+		for (int i=0; i < CARS; i++) {
+			if (car[i] >= 40) {
+				lose = 1;
+				win = i+1;
+				break;
+			}
+		system("cis"); //to clear //from stackoverflow
+		usleep(0.2); //20 milliseconds
+		for (int i=0; i<CARS; i++) {
+			draw(car[i], i+1);
+		}
+		if (lose) {
+			printf("Car %d is the winner!\n", win);
+		}
+		return 0;
 }
-
 //somewhere: void pthread_exit(void *value_ptr);
-value_ptr = NULL
+//value_ptr = NULL
+int start(){
+    printf("Welcome to CISC220 Racing Arena\nHit Enter to move forward\n");
+return 0;
+}
+int main() {
+	start();
+	pthread_t drawing;
+	pthread_t user;
+	pthread_t computer[4];
 
-void main() {
-	printf("Welcome to Cisc220 Racind Arena\n");
-	printf("Hit enter to move forward\n");
+	CAR[0] = 0;
+	CAR[1] = 0;
+	CAR[2] = 0;
+	CAR[3] = 0;
+	CAR[4] = 0;
+	
+	phtread_create(user, NULL, computer, &CAR[0]);
+	int rc;
+    	long t;
+   	for (t=0; t<4; t++) {
+       rc = pthread_create(computer+t, NULL, computer ,&CAR[t+1]);
+       if(rc) {
+         printf("ERROR; return code from pthread_create() is %d\n", rc);
+         exit(-1);
+       	}
+   	}
+	pthread_create(drawing, NULL, game, CAR);
+	if(rc) {
+         printf("ERROR; return code from pthread_create() is %d\n", rc);
+         exit(-1);
+       	}
+	pthread_join(drawing, NULL);
+	for(t=0; t<4; t++) {
+       	pthread_join(threads[t],NULL);
+    	}
+	
+	pthread_exit(NULL);
+	return 0;
 //int pthread_join(pthread_t thread, void NULL);
-
 }
 
-#define DONE "~";
-#define LEFT " ";
-#define CAR "|=>";
-//int lane somwhere?
-
-char* draw() {
-
-	int position = 0;
-	if (position == player) {
-		printf("%s", "|=>");
-	} else {
-		position++;
-	}
-	for (int i=0; i<player; i++) {
-		printf("%s", "~");
-	}
-	for (int i=0; i>player; i++) {
-		printf("%s", " ");
-	} prinf("# LANE %d #\n", lane);
-
-system("cis"); //to clear
-//return 0 or main()?
-sleep(0.2); //sleep is in seconds, 0.2 is 20 milliseconds
-}
