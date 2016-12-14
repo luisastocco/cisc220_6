@@ -99,7 +99,7 @@ int main() {
          exit(-1);
        	}
    	}
-	pthread_create(drawing, NULL, screen, CAR);
+	pthread_create(&drawing, NULL, screen, CAR);
 	if(rc) {
          printf("ERROR; return code from pthread_create() is %d\n", rc);
          exit(-1);
