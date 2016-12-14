@@ -12,7 +12,7 @@ int cars[5]; //global
 
 //do a draw for car1 maybe? or should we stick to array of 5 all together?
 
-void screen() {
+void* screen() {
 while (1) {
 	for (int i=0; i<5; i++) {
 		if (car[i] >= 40) {
