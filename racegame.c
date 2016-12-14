@@ -71,7 +71,7 @@ while (1 && car[0]<40) {
 void* ai() {
 for (int i=1; i<4; i++) {
 	while (1 && car[i]<40) {
-		usleep(rand() % 0.1); //0-100 milliseconds
+		usleep(rand() % 100) / 1000); //0-100 milliseconds
 		car[i]++;
 	}
 }
