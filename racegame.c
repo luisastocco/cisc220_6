@@ -12,7 +12,7 @@ int cars[5]; //global
 
 //do a draw for car1 maybe? or should we stick to array of 5 all together?
 
-int screen() {
+void screen() {
 while (1) {
 	for (int i=0; i<5; i++) {
 		if (car[i] >= 40) {
@@ -62,13 +62,13 @@ while (1 && car[0]<40) {
 	char c = getchar();
 	if (c == '\n' && prev == c) { //is it c or 0?
 		car[0]++;
-		computer(); //call other cars
+		ai(); //call other cars
 	}
 	prev = c;
 }
 }
 
-void* computer() {
+void* ai() {
 for (i=1; i<4; i++) {
 	while (1 && car[i]<40) {
 		usleep(rand(0.1)); //0-100 milliseconds
@@ -91,13 +91,13 @@ int main() {
 	
 	int rc;
     	long t;
-	rc =phtread_create(user, NULL, *computer, &car[0]);
+	rc =phtread_create(user, NULL, ai, &car[0]);
 	if(rc) {
          printf("ERROR; return code from pthread_create() is %d\n", rc);
          exit(-1);
        	}
-   	for (t=0; t<4; t++) {
-       rc = pthread_create(computer+t, NULL, &computer ,&car[t+1]);
+   	for (t=1; t<5; t++) {
+       rc = pthread_create(computer[t], NULL, ai ,&car[t+1]);
        if(rc) {
          printf("ERROR; return code from pthread_create() is %d\n", rc);
          exit(-1);
